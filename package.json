@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "telegraf": "^4.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.44",
+    "easy-yandex-s3": "^1.1.6"
+  }
+}

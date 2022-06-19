@@ -1,0 +1,27 @@
+{
+    "IsTruncated":false,
+    "Contents":
+        [
+            {
+                "Key":"2021-10-18_13h48_13.png",
+                "LastModified":"2021-10-23T18:55:51.520Z",
+                "ETag":"\"4ba867b1c4065a0dcef363642317a6c8\"",
+                "ChecksumAlgorithm":[],
+                "Size":6794,
+                "StorageClass":"STANDARD",
+                "Owner":
+                    {
+                        "DisplayName":"aje40000000000000000",
+                        "ID":"aje40000000000000000"
+                    }
+            }
+        ],
+        "Name":"os-an-telegram-bot",
+        "Prefix":"",
+        "Delimiter":"/",
+        "MaxKeys":1000,
+        "CommonPrefixes":
+            [
+                {"Prefix":"/"},
+                {"Prefix":"test1/"},
+                {"Prefix":"новая-новая/"}],"KeyCount":4}
