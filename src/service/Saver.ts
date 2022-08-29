@@ -27,6 +27,10 @@ export default class Saver {
         await this.s3.Upload({path: "../test/file.rtf", name: 'test.rtf'}, "/test1/");
     }
 
+   async uploadFile(file_buffer: any) {
+        await this.s3.Upload({buffer: file_buffer}, "/test1/");
+   }
+
     async list(pointer: string = '/'): Promise<string[]>{
         const bucketContent: YBucket = await this.s3.GetList(pointer);
         if(bucketContent.KeyCount === 0){
