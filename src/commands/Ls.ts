@@ -13,6 +13,11 @@ export class Ls extends Command {
         if(!this.isValid()) return 'Not valid command. $ls should contains max one whitespace.';
         const tail: string = this.getTail();
 
+        if(tail === '/') {
+            const list: string[] = await this.storage.listAll();
+            return list.join('\r\n');
+        }
+
         const list: string[] = await this.storage.list(tail);
         if(list.length === 0){
             return 'No such paths';
@@ -26,7 +31,7 @@ export class Ls extends Command {
         return true;
     }
 
-    private getTail(): string{
+    private getTail(): string {
         if(!this.input.trim().includes(' ')) return '/';
         return this.input.trim().split(' ')[1];
     }

@@ -40,4 +40,28 @@ export default class Saver {
         const folders: string[] = bucketContent.CommonPrefixes.map(folder => folder.Prefix);
         return [...folders, ...files];
     }
+
+    async listAll(): Promise<string[]> {
+        const bucketContent: YBucket = await this.s3.GetList('/');
+        if(bucketContent.KeyCount === 0) return [];
+        const rootFolders: string[] = bucketContent.CommonPrefixes.map(folder => folder.Prefix);
+        const allFolders: string[] = await this.getFolders(rootFolders);
+        let allElements: string[] = [];
+        for(const folder of allFolders) {
+            const bucketContent: YBucket = await this.s3.GetList(folder);
+            allElements.push(...bucketContent.Contents.map(file => file.Key));
+        }
+        return allElements;
+    }
+
+    private async getFolders(folders: string[]): Promise<string[]> {
+        let result: string[] = folders;
+        for(const folder of folders) {
+                if(folder !== "/") {
+                    const bucketContent: YBucket = await this.s3.GetList(folder);
+                    result.push(...bucketContent.CommonPrefixes.map(f => f.Prefix));    
+                }
+        }
+        return result;
+    }
 }

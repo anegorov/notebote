@@ -15,13 +15,7 @@ bot.on('text', (ctx: Context) => {
 });
 
 bot.on('message', async (ctx) => {
-    const msg: any = ctx.message;
-    const file_id: string = msg.document.file_id;
-    const href: string = await (await ctx.telegram.getFileLink(file_id)).href;
-    const response: any = await axios.get(href, {responseType: 'arraybuffer'});
-    const buffer = Buffer.from(response.data, 'base64');
-    await storage.uploadFile(buffer);
-    ctx.reply(href);
+    processor.message(ctx);
 });
 
 bot.launch();
