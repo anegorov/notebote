@@ -2,7 +2,8 @@ export enum Keywords {
     NEW = '$n',
     EDIT = '$e',
     LIST = 'ls',
-    HELP = '$h'
+    HELP = '$h',
+    MKDIR = 'mkdir'
 }
 
 export const keywords: string[] = ['$n', '$e', 'ls', '$h'];

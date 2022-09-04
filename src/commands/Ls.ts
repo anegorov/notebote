@@ -5,12 +5,12 @@ export class Ls extends Command {
     input: string;
 
     constructor(input: string){
-        super();
+        super(input);
         this.input = input;
     }
 
     async execute(): Promise<string> {
-        if(!this.isValid()) return 'Not valid command. $ls should contains max one whitespace.';
+        if(!this.isValid(Keywords.LIST)) return 'Not valid command.';
         const tail: string = this.getTail();
 
         if(tail === '/') {
@@ -23,16 +23,5 @@ export class Ls extends Command {
             return 'No such paths';
         }
         return list.join('\r\n');
-    }
-
-    private isValid(): boolean {
-        if(!this.input.startsWith(Keywords.LIST)) return false;
-        if(this.input.trim().split(' ').length > 2) return false;
-        return true;
-    }
-
-    private getTail(): string {
-        if(!this.input.trim().includes(' ')) return '/';
-        return this.input.trim().split(' ')[1];
     }
 }

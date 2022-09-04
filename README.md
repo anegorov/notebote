@@ -17,3 +17,7 @@ npm install axios (library for http requests)
 ### To get list of existing notes
 1. ls - returns all resources (files and folders) 
 2. ls {path name} - returns resources in specified folder
+
+### Delete note/file
+1. del - delete specified file (example: del default/file_note.json
+)

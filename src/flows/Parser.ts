@@ -1,7 +1,7 @@
 import { Note } from "../types/Types";
 import { amendKeywords, keywords } from "./Keywords";
 
-export default class Processor {
+export default class Parser {
     input: string;
 
     constructor(input: string){

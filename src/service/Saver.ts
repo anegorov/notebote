@@ -24,11 +24,27 @@ export default class Saver {
     }
 
     async set(){
-        await this.s3.Upload({path: "../test/file.rtf", name: 'test.rtf'}, "/test1/");
+        await this.s3.Upload({path: "../test/file.rtf", name: 'test.rtf'}, "/default/");
     }
 
-   async uploadFile(file_buffer: any) {
-        await this.s3.Upload({buffer: file_buffer}, "/test1/");
+    async deleteFile(path: string): Promise<boolean> {
+        return await this.s3.Remove(path);
+    }
+
+   async uploadFileFromBuffer(file_buffer: Buffer, targetDirName: string = "default"): Promise<void> {
+        await this.s3.Upload({buffer: file_buffer}, `/${targetDirName}/`);
+   }
+
+   async uploadFile(
+        sourceFilePath: string = "../templates/newNote.json",
+        targetFileName: string,
+        targetDirName: string = "default"
+    ): Promise<any> {
+        return await this.s3.Upload({path: sourceFilePath, name: targetFileName}, `/${targetDirName}/`);
+   }
+
+   async createFolder(name: string) {
+        await this.s3.Upload(`/${name}`);
    }
 
     async list(pointer: string = '/'): Promise<string[]>{
