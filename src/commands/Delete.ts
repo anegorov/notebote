@@ -1,8 +1,7 @@
 import { Keywords } from "../flows/Keywords";
-import { getBuffer } from "../utils/Util";
 import { Command } from "./Command";
 
-export class NewNote extends Command {
+export class Delete extends Command {
     input: string;
     
     constructor(input: string) {
@@ -11,11 +10,9 @@ export class NewNote extends Command {
     }
 
     async execute(): Promise<string> {
-        if(!this.isValid(Keywords.NEW)) return `Wrong sintax of ${Keywords.NEW}`;
-
-        // const result:any = await this.storage.uploadFile("../templates/newNote.json", `${this.getSecondParameter()}.json`, "default");
-        const result:any = await this.storage.uploadBuffer(this.getSecondParameter(), "TEXT TO ADD...");
-        return result.key;
+        if(!this.isValid(Keywords.DELETE)) return `Wrong sintax of ${Keywords.DELETE}`;
+        const result: boolean = await this.storage.deleteFile(this.getSecondParameter());
+        return result ? `Note ${this.getSecondParameter()} is deleated` : `Cant deleate note ${this.getSecondParameter()}`;
     }
 
     isValid(keyword: Keywords): boolean {

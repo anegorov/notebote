@@ -1,11 +1,12 @@
 export enum Keywords {
-    NEW = '$n',
+    NEW = 'new',
     EDIT = '$e',
     LIST = 'ls',
-    HELP = '$h',
-    MKDIR = 'mkdir'
+    HELP = 'help',
+    MKDIR = 'mkdir',
+    DELETE = 'del'
 }
 
-export const keywords: string[] = ['$n', '$e', 'ls', '$h'];
+export const keywords: string[] = ['new', '$e', 'ls', 'help', 'mkdir', 'del'];
 
-export const amendKeywords: string[] = ['$n', '$e'];
+export const amendKeywords: string[] = ['new', '$e', 'mkdir', 'del'];

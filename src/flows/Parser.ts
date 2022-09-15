@@ -42,4 +42,8 @@ export default class Parser {
         const index: number = this.input.indexOf(' ');
         return this.input.slice(index, this.input.length).trim();
     }
+
+    getCommandName(): string {
+        return this.input.trim().split(" ")[0];
+    }
 }

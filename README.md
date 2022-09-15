@@ -20,4 +20,3 @@ npm install axios (library for http requests)
 
 ### Delete note/file
 1. del - delete specified file (example: del default/file_note.json
-)

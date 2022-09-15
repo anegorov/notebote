@@ -1,7 +1,8 @@
 import { Keywords } from "../flows/Keywords";
 import Saver from "../service/Saver";
+import { ICommand } from "../types/Types";
 
-export class Command {
+export class Command implements ICommand {
     storage: Saver = new Saver();
 
     input: string;

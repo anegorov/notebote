@@ -1,12 +1,8 @@
 import axios from "axios";
 import { Context } from "telegraf";
-import { Ls } from "../commands/Ls";
-import { Mkdir } from "../commands/Mkdir";
-import { Help } from "../commands/Help";
 import Saver from "../service/Saver";
-import { Keywords } from "./Keywords";
 import Parser from "./Parser";
-import { NewNote } from "../commands/NewNote";
+import { CommandFactory, Keys } from "../commands/CommandFactory";
 
 export default class Processor {
     storage: Saver = new Saver();
@@ -16,25 +12,8 @@ export default class Processor {
         const current:string = update.message.text;
         const parser: Parser = new Parser(current);
         if(parser.isValidCommand()){
-            if(current.includes(Keywords.HELP)){
-                const result: string = await new Help(current).execute();
-                ctx.reply(result);
-            }
-            if(current.includes(Keywords.LIST)){
-                const result: string = await new Ls(current).execute();
-                ctx.reply(result);
-            }
-            if(current.includes(Keywords.MKDIR)){
-                await new Mkdir(current).execute();
-                ctx.reply(` >>> ${current}`);
-            }
-            if(current.includes(Keywords.NEW)){
-                const result: string = await new NewNote(current).execute();
-                ctx.reply(`${result}`);
-            }
-        }else{
-            console.log('Cant recognize this command');
-            ctx.reply('Cant recognize this command');
+            const result: string = await new CommandFactory(current).getCommand(parser.getCommandName() as Keys).execute();
+            ctx.reply(result);
         }
     }
 

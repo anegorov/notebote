@@ -21,3 +21,7 @@ export interface YBucket {
 export interface Prefix {
     Prefix: string;
 }
+
+export interface ICommand {
+    execute(): Promise<string>;
+}

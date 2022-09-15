@@ -1,4 +1,5 @@
 import { YBucket, YBucketItem } from "../types/Types";
+import { getBuffer } from "../utils/Util";
 
 const EasyYandexS3 = require("easy-yandex-s3");
 
@@ -41,6 +42,10 @@ export default class Saver {
         targetDirName: string = "default"
     ): Promise<any> {
         return await this.s3.Upload({path: sourceFilePath, name: targetFileName}, `/${targetDirName}/`);
+   }
+
+   async uploadBuffer(fileName: string, data: string): Promise<any> {
+        return await this.s3.Upload({buffer: getBuffer(data), name: fileName}, "default");
    }
 
    async createFolder(name: string) {
