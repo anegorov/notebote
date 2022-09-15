@@ -1,16 +1,17 @@
 import { YBucket, YBucketItem } from "../types/Types";
 import { getBuffer } from "../utils/Util";
 
+const config = require('config');
 const EasyYandexS3 = require("easy-yandex-s3");
 
 export default class Saver {
 
     readonly s3 = new EasyYandexS3({
         auth: {
-            accessKeyId: "Q8oEPP1-F5B3NZFb_mY9",
-            secretAccessKey: "fQvKwuTuyjWG8e4AsK8WKwEthxRltQV7MYbTEXFQ",
+            accessKeyId: config.get("accessKeyId"),
+            secretAccessKey: config.get("secretAccessKey"),
         },
-        Bucket: "os-an-telegram-bot",
+        Bucket: config.get("bucket"),
         debug: true
     });
 

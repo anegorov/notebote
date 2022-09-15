@@ -2,9 +2,8 @@ import { Telegraf } from 'telegraf';
 import { Context } from 'telegraf';
 import Processor from './flows/Processor';
 
-let token: string = "1727260134:AAHJ1o2D0vnV3MH6ZlVWQnHxgpdiUYjvZmE";
-
-const bot = new Telegraf(token);
+const config = require('config');
+const bot = new Telegraf(config.get("token"));
 const processor: Processor = new Processor();
 
 bot.on('text', (ctx: Context) => {
