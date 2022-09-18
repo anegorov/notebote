@@ -3,16 +3,9 @@ import { getBuffer } from "../utils/Util";
 import { Command } from "./Command";
 
 export class NewNote extends Command {
-    input: string;
-    
-    constructor(input: string) {
-        super(input);
-        this.input = input;
-    }
-
     async execute(): Promise<string> {
         if(!this.isValid(Keywords.NEW)) return `Wrong sintax of ${Keywords.NEW}`;
-
+        // this.ctx.scene.enter('new-note')
         // const result:any = await this.storage.uploadFile("../templates/newNote.json", `${this.getSecondParameter()}.json`, "default");
         const result:any = await this.storage.uploadBuffer(this.getSecondParameter(), "TEXT TO ADD...");
         return result.key;
@@ -20,10 +13,10 @@ export class NewNote extends Command {
 
     isValid(keyword: Keywords): boolean {
         if(
-            !this.input.startsWith(keyword) || 
-            this.input.length < 2 || 
-            this.input.split(" ").length < 2 ||
-            this.input.split(" ").length > 2
+            !this.getCurrentText().startsWith(keyword) || 
+            this.getCurrentText().length < 2 || 
+            this.getCurrentText().split(" ").length < 2 ||
+            this.getCurrentText().split(" ").length > 2
           ) return false;
         return true;
     }

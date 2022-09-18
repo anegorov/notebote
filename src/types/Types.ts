@@ -1,3 +1,5 @@
+import { Context } from "telegraf";
+
 export interface Note {
     name: string;
     body: string;
@@ -24,4 +26,12 @@ export interface Prefix {
 
 export interface ICommand {
     execute(): Promise<string>;
+}
+
+export interface SessionData {
+	messageContext: Context;
+}
+
+export interface BotContext extends Context {
+	session?: SessionData;
 }

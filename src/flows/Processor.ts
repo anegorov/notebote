@@ -8,11 +8,9 @@ export default class Processor {
     storage: Saver = new Saver();
     
     async text(ctx: Context) {
-        const update: any = ctx.update;
-        const current:string = update.message.text;
-        const parser: Parser = new Parser(current);
+        const parser: Parser = new Parser(ctx);
         if(parser.isValidCommand()){
-            const result: string = await new CommandFactory(current).getCommand(parser.getCommandName() as Keys).execute();
+            const result: string = await new CommandFactory(ctx).getCommand(parser.getCommandName() as Keys).execute();
             ctx.reply(result);
         }
     }

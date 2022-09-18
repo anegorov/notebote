@@ -6,6 +6,7 @@ import { Ls } from "./Ls";
 import { Mkdir } from "./Mkdir";
 import { NewNote } from "./NewNote";
 import { Error } from "./Error";
+import { Context } from "telegraf";
 
 const commandsMap = {
     del: Delete,
@@ -18,26 +19,26 @@ const commandsMap = {
 export type Keys = keyof typeof commandsMap;
   
 export class CommandFactory {
-    input: string;
+    ctx: Context;
     
-    constructor(input: string) {
-        this.input = input;
+    constructor(ctx: Context) {
+        this.ctx = ctx;
     }
 
     getCommand(k: Keys): Command {
         switch(k) {
             case Keywords.HELP:
-                return new Help(this.input);
+                return new Help(this.ctx);
             case Keywords.LIST:
-                return new Ls(this.input);
+                return new Ls(this.ctx);
             case Keywords.MKDIR:
-                return new Mkdir(this.input);
+                return new Mkdir(this.ctx);
             case Keywords.NEW:
-                return new NewNote(this.input);
+                return new NewNote(this.ctx);
             case Keywords.DELETE:
-                return new Delete(this.input);
+                return new Delete(this.ctx);
             default:
-                return new Error(this.input);
+                return new Error(this.ctx);
         }
     }
 }

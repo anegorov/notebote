@@ -1,11 +1,13 @@
+import { Context } from "telegraf";
+import { Command } from "../commands/Command";
 import { Note } from "../types/Types";
 import { amendKeywords, keywords } from "./Keywords";
 
 export default class Parser {
     input: string;
 
-    constructor(input: string){
-        this.input = input;
+    constructor(ctx: Context){
+        this.input = new Command(ctx).getCurrentText();
     }
 
     getJson(): Note {

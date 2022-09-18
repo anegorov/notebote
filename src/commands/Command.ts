@@ -1,14 +1,14 @@
+import { Context } from "telegraf";
 import { Keywords } from "../flows/Keywords";
 import Saver from "../service/Saver";
 import { ICommand } from "../types/Types";
 
 export class Command implements ICommand {
     storage: Saver = new Saver();
+    ctx: Context;
 
-    input: string;
-
-    constructor(input: string){
-        this.input = input;
+    constructor(ctx: Context){
+        this.ctx = ctx;
     }
 
     async execute(): Promise<string> {
@@ -16,16 +16,21 @@ export class Command implements ICommand {
     }
 
     isValid(keyword: Keywords): boolean {
-        if(!this.input.startsWith(keyword) || this.input.length < 2) return false;
+        if(!this.getCurrentText().startsWith(keyword) || this.getCurrentText().length < 2) return false;
         return true;
     }
 
     getTail(): string {
-        if(!this.input.trim().includes(' ')) return '/';
-        return this.input.trim().split(' ')[1];
+        if(!this.getCurrentText().trim().includes(' ')) return '/';
+        return this.getCurrentText().trim().split(' ')[1];
     }
 
     getSecondParameter(): string {
         return this.getTail().split(' ')[0];
+    }
+
+    getCurrentText(): string {
+        const update: any = this.ctx.update;
+        return update.message.text;
     }
 }
