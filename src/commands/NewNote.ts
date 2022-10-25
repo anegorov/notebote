@@ -5,7 +5,8 @@ import { Command } from "./Command";
 export class NewNote extends Command {
     async execute(): Promise<string> {
         if(!this.isValid(Keywords.NEW)) return `Wrong sintax of ${Keywords.NEW}`;
-        // this.ctx.scene.enter('new-note')
+        const myctx = this.ctx as any;
+        myctx.scene.enter('NEW_NOTE');
         // const result:any = await this.storage.uploadFile("../templates/newNote.json", `${this.getSecondParameter()}.json`, "default");
         const result:any = await this.storage.uploadBuffer(this.getSecondParameter(), "TEXT TO ADD...");
         return result.key;
