@@ -20,12 +20,20 @@ export interface YBucket {
     CommonPrefixes: Prefix[];
 }
 
+export interface YResponse {
+    ETag: string;
+    Location: string;
+    key: string;
+    Key: string;
+    Bucket: string;
+}  
+
 export interface Prefix {
     Prefix: string;
 }
 
 export interface ICommand {
-    execute(): Promise<string>;
+    execute(): Promise<string | null>;
 }
 
 export interface SessionData {

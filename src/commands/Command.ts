@@ -11,7 +11,7 @@ export class Command implements ICommand {
         this.ctx = ctx;
     }
 
-    async execute(): Promise<string> {
+    async execute(): Promise<string | null> {
         return 'Smth wrong';
     }
 

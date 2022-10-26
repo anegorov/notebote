@@ -1,4 +1,4 @@
-import { YBucket, YBucketItem } from "../types/Types";
+import { YBucket, YBucketItem, YResponse } from "../types/Types";
 import { getBuffer } from "../utils/Util";
 
 const config = require('config');
@@ -45,7 +45,7 @@ export default class Saver {
         return await this.s3.Upload({path: sourceFilePath, name: targetFileName}, `/${targetDirName}/`);
    }
 
-   async uploadBuffer(fileName: string, data: string): Promise<any> {
+   async uploadBuffer(fileName: string, data: string): Promise<YResponse> {
         return await this.s3.Upload({buffer: getBuffer(data), name: fileName}, "default");
    }
 

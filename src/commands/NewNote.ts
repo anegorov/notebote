@@ -3,13 +3,11 @@ import { getBuffer } from "../utils/Util";
 import { Command } from "./Command";
 
 export class NewNote extends Command {
-    async execute(): Promise<string> {
+    async execute(): Promise<string | null> {
         if(!this.isValid(Keywords.NEW)) return `Wrong sintax of ${Keywords.NEW}`;
         const myctx = this.ctx as any;
         myctx.scene.enter('NEW_NOTE');
-        // const result:any = await this.storage.uploadFile("../templates/newNote.json", `${this.getSecondParameter()}.json`, "default");
-        const result:any = await this.storage.uploadBuffer(this.getSecondParameter(), "TEXT TO ADD...");
-        return result.key;
+        return null;
     }
 
     isValid(keyword: Keywords): boolean {

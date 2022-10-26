@@ -10,8 +10,10 @@ export default class Processor {
     async text(ctx: Context) {
         const parser: Parser = new Parser(ctx);
         if(parser.isValidCommand()){
-            const result: string = await new CommandFactory(ctx).getCommand(parser.getCommandName() as Keys).execute();
-            ctx.reply(result);
+            const result: string | null = await new CommandFactory(ctx).getCommand(parser.getCommandName() as Keys).execute();
+            if(result) {
+                ctx.reply(result);
+            }
         }
     }
 

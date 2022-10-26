@@ -11,8 +11,6 @@ const stage = new Scenes.Stage([NewScene.execute() as any], {ttl: 10});
 bot.use(session());
 bot.use(stage.middleware() as any);
 
-// bot.command('hi', (ctx:any) => ctx.scene.enter('NEW_NOTE'))
-
 bot.on('text', (ctx: Context) => {
     processor.text(ctx);    
 });
