@@ -45,8 +45,8 @@ export default class Saver {
         return await this.s3.Upload({path: sourceFilePath, name: targetFileName}, `/${targetDirName}/`);
    }
 
-   async uploadBuffer(fileName: string, data: string): Promise<YResponse> {
-        return await this.s3.Upload({buffer: getBuffer(data), name: fileName}, "default");
+   async uploadBuffer(fileName: string, data: string, path: string): Promise<YResponse> {
+        return await this.s3.Upload({buffer: getBuffer(data), name: fileName}, path);
    }
 
    async createFolder(name: string) {

@@ -14,8 +14,9 @@ export class NewScene {
         },
         async (ctx) => {
             const storage: Saver = new Saver();
-            NewScene.textNote = new Command(ctx).getCurrentText();
-            const result: YResponse = await storage.uploadBuffer(NewScene.fileName, NewScene.textNote);
+            const command = new Command(ctx);
+            NewScene.textNote = command.getCurrentText();
+            const result: YResponse = await storage.uploadBuffer(NewScene.fileName, NewScene.textNote, command.getPath());
             if(result.Key.includes(NewScene.fileName)){
                 await ctx.reply(`Note ${NewScene.fileName} with content "${NewScene.textNote}" is saved`);
             } else {

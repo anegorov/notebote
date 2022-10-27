@@ -33,4 +33,9 @@ export class Command implements ICommand {
         const update: any = this.ctx.update;
         return update.message.text;
     }
+
+    getPath(): string {
+        const lastIndex = this.getTail().lastIndexOf("/");
+        return this.getTail().substring(0, lastIndex);
+    }
 }
