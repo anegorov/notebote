@@ -5,9 +5,10 @@ export enum Keywords {
     HELP = 'help',
     MKDIR = 'mkdir',
     DELETE = 'del',
-    CAT = 'cat'
+    CAT = 'cat',
+    ECHO = 'echo'
 }
 
-export const keywords: string[] = ['new', '$e', 'ls', 'help', 'mkdir', 'del', 'cat'];
+export const keywords: string[] = ['new', '$e', 'ls', 'help', 'mkdir', 'del', 'cat', 'echo'];
 
 export const amendKeywords: string[] = ['new', '$e', 'mkdir', 'del'];

@@ -20,3 +20,8 @@ npm install axios (library for http requests)
 
 ### Delete note/file
 1. del - delete specified file (example: del default/file_note.json
+
+# Tsks
+1. Fix picture saving
+2. Add command edit. new command works as edit now.
+3. Add command echo

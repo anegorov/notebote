@@ -16,12 +16,9 @@ export class NewScene {
             const storage: Saver = new Saver();
             const command = new Command(ctx);
             NewScene.textNote = command.getCurrentText();
+            console.log(`PATH >> ${command.getPath()}`);
             const result: YResponse = await storage.uploadBuffer(NewScene.fileName, NewScene.textNote, command.getPath());
-            if(result.Key.includes(NewScene.fileName)){
-                await ctx.reply(`Note ${NewScene.fileName} with content "${NewScene.textNote}" is saved`);
-            } else {
-                await ctx.reply(`Can't save ${NewScene.fileName}`);
-            }
+            await ctx.reply(`${NewScene.textNote}\n\tsaved to ${NewScene.fileName}`);
             return await ctx.scene.leave();
         }
         );

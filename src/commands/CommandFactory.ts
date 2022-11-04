@@ -8,6 +8,7 @@ import { NewNote } from "./NewNote";
 import { Error } from "./Error";
 import { Context } from "telegraf";
 import { Cat } from "./Cat";
+import { Echo } from "./Echo";
 
 const commandsMap = {
     del: Delete,
@@ -15,7 +16,8 @@ const commandsMap = {
     ls: Ls,
     mkdir: Mkdir,
     new: NewNote,
-    cat: Cat
+    cat: Cat,
+    echo: Echo
 };
 
 export type Keys = keyof typeof commandsMap;
@@ -41,6 +43,8 @@ export class CommandFactory {
                     return new Cat(this.ctx);
             case Keywords.DELETE:
                 return new Delete(this.ctx);
+            case Keywords.ECHO:
+                return new Echo(this.ctx);
             default:
                 return new Error(this.ctx);
         }

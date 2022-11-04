@@ -11,3 +11,7 @@ export function readFile(fileWithPath: string) : string {
 export function writeFile(fileWithPath: string, data: string) {
     fs.writeFileSync(fileWithPath, data);
 }
+
+export function appendFile(fileWithPath: string, data: string) {
+    fs.appendFileSync(fileWithPath, data, 'utf8');
+}
