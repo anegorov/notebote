@@ -25,5 +25,5 @@ new {note name with path}
 1. echo {text/message} - just return sent message
 2. echo {text/message} >> {file name} - adding new line into bottom file
 
-# Tsks
+# Taks
 1. Fix picture saving
