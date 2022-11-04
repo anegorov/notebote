@@ -49,6 +49,10 @@ export default class Saver {
         return await this.s3.Upload({buffer: getBuffer(data), name: fileName}, path);
    }
 
+   async download(backetPath: string, localPath: string): Promise<any> {
+        return await this.s3.Download(backetPath, localPath);
+   }
+
    async createFolder(name: string) {
         await this.s3.Upload(`/${name}`);
    }

@@ -7,13 +7,15 @@ import { Mkdir } from "./Mkdir";
 import { NewNote } from "./NewNote";
 import { Error } from "./Error";
 import { Context } from "telegraf";
+import { Cat } from "./Cat";
 
 const commandsMap = {
     del: Delete,
     help: Help,
     ls: Ls,
     mkdir: Mkdir,
-    new: NewNote
+    new: NewNote,
+    cat: Cat
 };
 
 export type Keys = keyof typeof commandsMap;
@@ -35,6 +37,8 @@ export class CommandFactory {
                 return new Mkdir(this.ctx);
             case Keywords.NEW:
                 return new NewNote(this.ctx);
+            case Keywords.CAT:
+                    return new Cat(this.ctx);
             case Keywords.DELETE:
                 return new Delete(this.ctx);
             default:
