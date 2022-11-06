@@ -6,6 +6,14 @@
 4. npm install telegraf
 5. Get bot token and it works
 6. npm install axios (library for http requests)
+7. Create folder config and default.json file inside. 
+8. Structure of default.json file
+{
+    "accessKeyId": "_",
+    "secretAccessKey": "_",
+    "bucket": "_",
+    "token": "_:_"
+} 
 
 # Commands
 ### To add new or edit existing file
