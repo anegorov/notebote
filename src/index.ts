@@ -19,13 +19,13 @@ bot.on('message', async (ctx: Context) => {
     processor.message(ctx);
 });
 
-// bot.launch();
+bot.launch();
 
-module.exports.handler = async function (event: { body: string; }, context: any) {
-    const message = JSON.parse(event.body);
-    await bot.handleUpdate(message);
-    return {
-        statusCode: 200,
-        body: '',
-    };
-};
+// module.exports.handler = async function (event: { body: string; }, context: any) {
+//     const message = JSON.parse(event.body);
+//     await bot.handleUpdate(message);
+//     return {
+//         statusCode: 200,
+//         body: '',
+//     };
+// };

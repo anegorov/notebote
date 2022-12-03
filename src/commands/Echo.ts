@@ -6,8 +6,7 @@ export class Echo extends Command {
     async execute(): Promise<string | null> {
         if(!this.isValid(Keywords.ECHO)) return `Wrong sintax of ${Keywords.ECHO}`;
         if(this.isAddable()){
-            await this.storage.download(this.getFileName(), this.getFileNameNoPath());
-            const fileData: string = readFile(this.getFileNameNoPath());
+            const fileData: string = await this.storage.downloadFromBuffer(this.getFileName());
             await this.storage.uploadBuffer(this.getFileName(), fileData + "\n" + this.getValue(), "");
             return `${this.getFileName()} is updated`;
         }

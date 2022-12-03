@@ -1,3 +1,4 @@
+import { buffer } from "stream/consumers";
 import { YBucket, YBucketItem, YResponse } from "../types/Types";
 import { getBuffer } from "../utils/Util";
 
@@ -47,6 +48,14 @@ export default class Saver {
 
    async uploadBuffer(fileName: string, data: string, path: string = "default"): Promise<YResponse> {
         return await this.s3.Upload({buffer: getBuffer(data), name: fileName}, path);
+   }
+
+   async downloadFromBuffer(backetPath: string): Promise<string> {
+        const buffer = await this.s3.Download(backetPath);
+        if(!Object.keys(buffer).includes("data")) {
+            return "The specified key does not exist";
+        }
+        return buffer.data.Body.toString("utf8");
    }
 
    async download(backetPath: string, localPath: string): Promise<any> {
